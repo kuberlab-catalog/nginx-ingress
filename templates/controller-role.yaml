@@ -1,23 +1,29 @@
 {{- if .Values.useRBAC }}
-kind: Role
+kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: {{ template "controller.fullname" . }}
 rules:
 - apiGroups: ["", "extensions", "apps", "rbac.authorization.k8s.io"] # "" indicates the core API group
   resources:
-    - roles
-    - rolebindings
-    - serviceaccounts
+    - configmaps
+    - deployments
+    - endpoints
+    - ingresses
+    - ingresses.extensions
     - namespaces
+    - nodes
     - pods
     - pods/log
-    - deployments
-    - statefulsets
+    - rolebindings
+    - roles
+    - secrets
+    - serviceaccounts
     - services
-    - configmaps
-    - nodes
+    - statefulsets
+
   verbs:
     - get
     - list
+    - watch
 {{- end }}
