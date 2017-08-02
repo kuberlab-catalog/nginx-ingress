@@ -1,0 +1,23 @@
+{{- if .Value.useRBAC }}
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: {{ template "controller.fullname" . }}
+rules:
+- apiGroups: ["", "extensions", "apps", "rbac.authorization.k8s.io"] # "" indicates the core API group
+  resources:
+    - roles
+    - rolebindings
+    - serviceaccounts
+    - namespaces
+    - pods
+    - pods/log
+    - deployments
+    - statefulsets
+    - services
+    - configmaps
+    - nodes
+  verbs:
+    - get
+    - list
+{{- end }}

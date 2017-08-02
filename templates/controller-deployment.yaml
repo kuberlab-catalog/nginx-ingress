@@ -22,6 +22,9 @@ spec:
         component: "{{ .Values.controller.name }}"
         release: {{ .Release.Name }}
     spec:
+      {{- if .Value.useRBAC }}
+      serviceAccountName: {{ template "controller.fullname" . }}
+      {{- end }}
       containers:
         - name: {{ template "name" . }}-{{ .Values.controller.name }}
           image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"

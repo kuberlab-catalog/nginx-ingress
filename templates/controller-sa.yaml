@@ -1,0 +1,13 @@
+{{- if .Value.useRBAC }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ template "controller.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    component: "{{ .Values.controller.name }}"
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+{{- end }}
