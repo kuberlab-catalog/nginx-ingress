@@ -1,4 +1,4 @@
-{{- if .Value.useRBAC }}
+{{- if .Values.useRBAC }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:

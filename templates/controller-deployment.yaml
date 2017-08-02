@@ -22,7 +22,7 @@ spec:
         component: "{{ .Values.controller.name }}"
         release: {{ .Release.Name }}
     spec:
-      {{- if .Value.useRBAC }}
+      {{- if .Values.useRBAC }}
       serviceAccountName: {{ template "controller.fullname" . }}
       {{- end }}
       containers:
